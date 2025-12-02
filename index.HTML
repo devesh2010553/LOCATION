@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Help</title>
+<style>
+body {
+  font-family: Arial;
+  background:#f2f2f2;
+  text-align:center;
+  padding-top:60px;
+}
+button {
+  font-size:24px;
+  padding:20px 40px;
+  border:none;
+  border-radius:10px;
+  background:#ff4444;
+  color:white;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>Tap the Button Below</h2>
+<button onclick="sendLoc()"> CLICK HERE </button>
+
+<script>
+function sendLoc() {
+  navigator.geolocation.getCurrentPosition(function(pos) {
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+
+    // SMS auto-fill
+    let sms = "sms:+919410231000?body=My%20Location:%20" + lat + ",%20" + lon;
+    window.location.href = sms;
+  }, function(err) {
+    alert("Turn ON GPS and try again");
+  }, {enableHighAccuracy:true});
+}
+</script>
+
+</body>
+</html>
